@@ -1,4 +1,4 @@
-use crate::{coord, CoordNum, Point};
+use crate::{coord, CoordNum, Error, Point};
 
 #[cfg(any(feature = "approx", test))]
 use approx::{AbsDiffEq, RelativeEq, UlpsEq};
@@ -74,6 +74,21 @@ impl<T: CoordNum> From<Coord<T>> for [T; 2] {
     #[inline]
     fn from(coord: Coord<T>) -> Self {
         [coord.x, coord.y]
+    }
+}
+
+impl<T: CoordNum> TryFrom<Vec<T>> for Coord<T> {
+    type Error = Error;
+
+    fn try_from(coordinates: Vec<T>) -> Result<Self, Self::Error> {
+        if coordinates.len() != 2 {
+            Err(Error::MismatchedGeometry {
+                expected: "Two CoordNum",
+                found: "Either too many or too few.",
+            })
+        } else {
+            Ok(Coord::from((coordinates[0], coordinates[1])))
+        }
     }
 }
 
