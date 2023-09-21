@@ -305,26 +305,6 @@ impl<T: CoordNum> Point<T> {
     }
 }
 
-impl<T: CoordFloat> Point<T> {
-    /// Converts the (x,y) components of Point to degrees
-    ///
-    /// # Example
-    /// ```
-    /// use geo_types::Point;
-    ///
-    /// let p = Point::new(1.234, 2.345);
-    /// let (x, y): (f32, f32) = p.to_degrees().x_y();
-    /// assert_eq!(x.round(), 71.0);
-    /// assert_eq!(y.round(), 134.0);
-    /// ```
-    pub fn to_degrees(self) -> Self {
-        let (x, y) = self.x_y();
-        let x = x.to_degrees();
-        let y = y.to_degrees();
-        Point::new(x, y)
-    }
-}
-
 impl<T> Neg for Point<T>
 where
     T: CoordNum + Neg<Output = T>,
