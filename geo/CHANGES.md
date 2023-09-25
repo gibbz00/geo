@@ -8,6 +8,8 @@
   * <https://github.com/georust/geo/pull/1041>
 * Add `matches` method to IntersectionMatrix for ergonomic de-9im comparisons.
   * <https://github.com/georust/geo/pull/1043>
+* Add `ToDegrees`, `ToDegreesInPlace`, `ToRadians`, `ToRadiansInPlace`.
+  * <https://github.com/georust/geo/pull/1070>
 
 ## 0.26.0
 
